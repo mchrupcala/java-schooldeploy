@@ -40,6 +40,27 @@ public class CourseServiceImpl implements CourseService
 
     @Transactional
     @Override
+    public Course save(Course course)
+    {
+        Course newCourse = new Course();
+
+        newCourse.setCoursename(course.getCoursename());
+        newCourse.setInstructor(course.getInstructor());
+        newCourse.setStudents(course.getStudents());
+        newCourse.setCourseid(course.getCourseid());
+
+        return courserepos.save(newCourse);
+    }
+
+    @Override
+    public Course findCourseById(long id) throws EntityNotFoundException
+    {
+        return courserepos.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
+    }
+
+    @Transactional
+    @Override
     public void delete(long id) throws EntityNotFoundException
     {
         if (courserepos.findById(id).isPresent())

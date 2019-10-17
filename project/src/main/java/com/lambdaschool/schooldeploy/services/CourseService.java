@@ -12,6 +12,10 @@ public interface CourseService
 
     ArrayList<Course> findAllPageable(Pageable pageable);
 
+    Course  save(Course course);
+
+    Course findCourseById(long id);
+
     ArrayList<CountStudentsInCourses> getCountStudentsInCourse();
 
     void delete(long id);
