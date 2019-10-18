@@ -1,0 +1,90 @@
+Michaels-MacBook-Pro:java-schooldeploy michaelchrupcala$ curl -X POST --user "lambda-client:lambda-secret" -d "grant_type=password&username=admin&password=password"  http://mchrup-schooldeploy.herokuapp.com/login
+{"access_token":"bf0e19ab-a6ce-4ead-97e2-3443ffae1a48","token_type":"bearer","expires_in":3599,"scope":"read
+
+GET
+/courses/courses
+
+Michaels-MacBook-Pro:java-schooldeploy michaelchrupcala$ curl -X GET -H "Accept: application/json" -H "Authorization: Bearer bf0e19ab-a6ce-4ead-97e2-3443ffae1a48" https://mchrup-schooldeploy.herokuapp.com/courses/courses
+[{"courseid":4,"coursename":"Data Science","instructor":{"instructid":1,"instructname":"Sally"},"students":[]},{"courseid":5,"coursename":"JavaScript","instructor":{"instructid":1,"instructname":"Sally"},"students":[]},{"courseid":6,"coursename":"Node.js","instructor":{"instructid":1,"instructname":"Sally"},"students":[]}]
+
+GET
+/courses/studcount
+
+Michaels-MacBook-Pro:java-schooldeploy michaelchrupcala$ curl -X GET -H "Accept: application/json" -H "Authoration: Bearer bf0e19ab-a6ce-4ead-97e2-3443ffae1a48" https://mchrup-schooldeploy.herokuapp.com/courses/studcount
+[]
+
+DELETE
+/courses/courses/{courseid}
+
+Michaels-MacBook-Pro:java-schooldeploy michaelchrupcala$ curl -X DELETE -H "AuthorizationL: Bearer bf0e19ab-a6ce-4ead-97e2-3443ffae1a48" https://mchrup-schooldeploy.herokuapp.com/courses/courses/4
+
+
+GET
+/students/students
+Michaels-MacBook-Pro:java-schooldeploy michaelchrupcala$ curl -X GET -H "Accept: application/json" -H "Authoration: Bearer bf0e19ab-a6ce-4ead-97e2-3443ffae1a48" https://mchrup-schooldeploy.herokuapp.com/students/students
+[{"studid":10,"studname":"John","courses":[]},{"studid":11,"studname":"Julian","courses":[]},{"studid":12,"studname":"Mary","courses":[]}]
+
+GET
+/students/Student/{StudentId}
+Michaels-MacBook-Pro:java-schooldeploy michaelchrupcala$ curl -X GET -H "Accept: application/json" -H "Authorization: Bearer bf0e19ab-a6ce-4ead-97e2-3443ffae1a48" https://mchrup-schooldeploy.herokuapp.com/students/Student/10
+{"studid":10,"studname":"John","courses":[]}
+
+
+GET
+/students/student/namelike/{name}
+Michaels-MacBook-Pro:java-schooldeploy michaelchrupcala$ curl -X GET -H "Accept: application/json" -H "Authorization: Bearer bf0e19ab-a6ce-4ead-97e2-3443ffae1a48" https://mchrup-schooldeploy.herokuapp.com/students/student/namelike/Jo
+[{"studid":10,"studname":"John","courses":[]}]
+
+
+POST
+/students/Student
+
+Michaels-MacBook-Pro:java-schooldeploy michaelchrupcala$ curl -X POST -H "Content-Type: application/json" -d "{\"studname\": \"Mary Tyler Moore\"}" https://mchrup-schooldeploy.herokuapp.com/students/Student
+(pulled in Postman because i'm not sure if Curl supports paging...)
+[
+    {
+        "studid": 10,
+        "studname": "John",
+        "courses": []
+    },
+    {
+        "studid": 11,
+        "studname": "Julian",
+        "courses": []
+    },
+    {
+        "studid": 12,
+        "studname": "Mary",
+        "courses": []
+    },
+    {
+        "studid": 227,
+        "studname": "Mary Tyler Moore",
+        "courses": []
+    },
+    {
+        "studid": 228,
+        "studname": "Mary Tyler Moore",
+        "courses": []
+    },
+    {
+        "studid": 229,
+        "studname": "MaryTylerMoore",
+        "courses": []
+    },
+    {
+        "studid": 230,
+        "studname": "Damien",
+        "courses": []
+    }
+
+POST
+/students/Student/{StudentId}
+
+Michaels-MacBook-Pro:java-schooldeploy michaelchrupcala$ curl -X POST -H "Content-Type: application/json" -d "{\"studname\": \"Bruce Willis\"}" https://mchrup-schoold7ploy.herokuapp.com/students/Student/227
+
+
+DELETE
+/students/Student/{StudentId}
+
+Michaels-MacBook-Pro:java-schooldeploy michaelchrupcala$ curl -X DELETE -H "AuthorizationL: Bearer bf0e19ab-a6ce-4ead-97e2-3443ffae1a48" https://mchrup-schooldeploy.herokuapp.com/students/Student/227
